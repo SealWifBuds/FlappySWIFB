@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50" height="150" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main body -->
+    <path d="M10,0 L40,0 L45,120 L40,150 L10,150 L5,120 Z" fill="#FFFFFF" stroke="#D3D3D3" stroke-width="1"/>
+    
+    <!-- Black stripes -->
+    <path d="M10,40 L40,40 L40,45 L10,45 Z" fill="#000000"/>
+    <path d="M8,80 L42,80 L42,85 L8,85 Z" fill="#000000"/>
+    
+    <!-- Grid fins -->
+    <rect x="5" y="90" width="5" height="10" fill="#A0A0A0"/>
+    <rect x="40" y="90" width="5" height="10" fill="#A0A0A0"/>
+    
+    <!-- Engine section -->
+    <path d="M5,120 L45,120 L45,130 L5,130 Z" fill="#A0A0A0"/>
+    
+    <!-- Merlin engines -->
+    <circle cx="15" cy="140" r="3" fill="#4A4A4A"/>
+    <circle cx="25" cy="140" r="3" fill="#4A4A4A"/>
+    <circle cx="35" cy="140" r="3" fill="#4A4A4A"/>
+    
+    <!-- Landing legs -->
+    <path d="M8,145 L15,145 L15,150 L8,150 Z" fill="#A0A0A0"/>
+    <path d="M35,145 L42,145 L42,150 L35,150 Z" fill="#A0A0A0"/>
+</svg>
