@@ -151,7 +151,7 @@
     </style>
 </head>
 <body>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <div id="gameContainer">
         <canvas id="backgroundCanvas" width="320" height="480"></canvas>
         <canvas id="gameCanvas" width="320" height="480"></canvas>
@@ -184,5 +184,6 @@
     </div>
     <script src="background.js"></script>
     <script src="game.js"></script>
+    <script>telegram.webapp.ready();</script>
 </body>
 </html>
