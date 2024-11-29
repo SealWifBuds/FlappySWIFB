@@ -192,6 +192,7 @@ class FlappyMemesGame {
 
          // Sound management
          this.soundManager = new SoundManager();
+        telegram.webapp.rady();
     }
 
     initCharacterSelection() {
