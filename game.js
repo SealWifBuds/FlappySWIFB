@@ -192,7 +192,6 @@ class FlappyMemesGame {
 
          // Sound management
          this.soundManager = new SoundManager();
-        telegram.webapp.ready();
     }
 
     initCharacterSelection() {
@@ -916,6 +915,8 @@ class FlappyMemesGame {
         this.finalScoreElement.textContent = this.score;
         this.gameOverScreen.style.display = 'block';
         this.soundManager.playMusic(this.selectedCharacter); 
+        // Send score to Telegram if we're in Telegram WebApp
+        submitScore(this.score);
     }
 
     jump() {
@@ -961,6 +962,7 @@ function toggleMusic() {
 }
 
 function startGame() {
+    const user = Telegram.WebApp.initDataUnsafe.user;
     if (!game) {
         game = new FlappyMemesGame();
     }
@@ -977,6 +979,37 @@ function restartGame() {
     game.selectedCharacter = currentCharacter;
     game.syncCharacterSelection();
     document.getElementById('startScreen').style.display = 'block';
+    console.log('Restarting game...');
     game.soundManager.isMusicMuted = currentMusicMuted;
     game.soundManager.isMuted = currentisMuted;
+}
+
+function submitScore(score) {
+    // Validate if Telegram is available
+    if (!Telegram.WebApp.initDataUnsafe.user) {
+        console.error("Telegram user data is unavailable.");
+        return;
+    }
+
+    const botToken = process.env.TELEGRAM_BOT_TOKEN; // Replace with your bot's token
+
+    fetch('https://api.telegram.org/bot' + botToken + '/setGameScore', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            user_id: Telegram.WebApp.initDataUnsafe.user.id, // Get user ID from Telegram WebApp
+            score: score,
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {
+            console.log("Score submitted successfully:", data.result);
+        } else {
+            console.error("Failed to submit score:", data);
+        }
+    })
+    .catch(error => console.error("Error submitting score:", error));
 }
