@@ -107,10 +107,11 @@ class FlappyMemesGame {
         this.gameContainer = document.getElementById('gameContainer');
         this.usernameElement = document.getElementById('username');
 
-        // Get username from URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const username = decodeURIComponent(urlParams.get('username') || 'Player');
-        this.usernameElement.textContent = `@${username}`;
+        // Get username from Telegram WebApp
+        if (window.Telegram?.WebApp?.initDataUnsafe?.user) {
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            this.usernameElement.textContent = user.username ? `@${user.username}` : user.first_name;
+        }
 
         // Character selection
         this.selectedCharacter = 'seal';
