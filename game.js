@@ -105,6 +105,12 @@ class FlappyMemesGame {
         this.finalScoreElement = document.getElementById('finalScore');
         this.pauseOverlay = document.getElementById('pauseOverlay');
         this.gameContainer = document.getElementById('gameContainer');
+        this.usernameElement = document.getElementById('username');
+
+        // Get username from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = decodeURIComponent(urlParams.get('username') || 'Player');
+        this.usernameElement.textContent = `@${username}`;
 
         // Character selection
         this.selectedCharacter = 'seal';
